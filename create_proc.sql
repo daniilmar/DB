@@ -75,15 +75,27 @@ begin try
 	select @v_EndTime = DATEADD(MINUTE,DATEPART(MINUTE,@p_Duration),@v_EndTime );
 
 	if @p_Type is null
+	begin
 		RAISERROR('Не указан тип пары',10,2);
+		return;
+	end
 	if @p_StartTime is null
+	begin
 		RAISERROR('Не указано время начала пары',10,2);
+		return;
+	end
 	if @p_Duration is null
+	begin
 		RAISERROR('Не указан время длительности пары',10,2);
+		return;
+	end
 	if (select count(*) from Lesson where LessonType = @p_Type and  
 									((@p_StartTime between StartTime and EndTime) or 
 									(@v_EndTime between StartTime and EndTime))) >0
+	begin
 		RAISERROR('Наложение времени пары на другое время',10,2);
+		return;
+	end
 	declare  @count_lesson int;
 	set @count_lesson = (select count(*) from Lesson where LessonType = @p_Type);
   begin transaction;
@@ -122,15 +134,30 @@ as set nocount, xact_abort on set concat_null_yields_null off
 begin try
 
 	if @p_LessonType is null
+	begin
 		RAISERROR('Не указан тип пары',10,2);
+		return;
+	end
 	if @p_LessonNumber is null
+	begin
 		RAISERROR('Не указан номер пары',10,2);
+		return;
+	end
 	if @p_Classroom is null
+	begin
 		RAISERROR('Не указана аудитория',10,2);
+		return;
+	end
 	if @p_CourseID is null
+	begin
 		RAISERROR('Не указан номер курса',10,2);
+		return;
+	end
 	if @p_DayWeek is null
+	begin
 		RAISERROR('Не указан день недели',10,2);
+		return;
+	end
 
   begin transaction;
 

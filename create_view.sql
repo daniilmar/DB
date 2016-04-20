@@ -16,8 +16,8 @@ go
 
 create view V_Lesson
 as
-select Number     as Number,
-	   LessonType as LessonType,
+select LessonType as LessonType,
+	   Number     as Number,	   
 	   StartTime  as StartTime,
 	   EndTime	  as EndTime
 from Lesson
@@ -41,8 +41,8 @@ go
 
 create view V_Schedule
 as
-select sch.LessonNumber as LessonNumber,
-	   sch.LessonType	as LessonType,
+select sch.LessonType	as LessonType,
+	   sch.LessonNumber as LessonNumber,
 	   sch.Classroom    as Classroom,
 	   sch.CourseID		as CourseID,
 	   sch.DayWeek		as DayWeek,

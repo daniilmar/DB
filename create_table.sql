@@ -57,7 +57,7 @@ Classroom	 int		 NOT NULL,
 CourseID	 int		 NOT NULL,
 CHECK (DayWeek IN (1, 2, 3, 4, 5, 6, 7)),--('пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс')),
 INDEX LessonIndex CLUSTERED (DayWeek, LessonNumber, LessonType),
-PRIMARY KEY (LessonNumber, LessonType, Classroom, CourseID),
+PRIMARY KEY (LessonNumber, LessonType, Classroom, CourseID, DayWeek),
 FOREIGN KEY (LessonNumber, LessonType) REFERENCES Lesson(Number, LessonType),
 FOREIGN KEY (Classroom)			       REFERENCES Classroom(Number),
 FOREIGN KEY (CourseID)				   REFERENCES Course(CourseID)
