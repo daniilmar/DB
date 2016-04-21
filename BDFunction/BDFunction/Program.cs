@@ -32,7 +32,7 @@ namespace BDFunction
         {
             string connectionString = @"Data Source=ELM-PC;Initial Catalog=Schedule;Integrated Security=True";
             connection = new SqlConnection(connectionString);
-
+            Num_Schedule = 2*Math.Max(Num_Course, Num_Class) * Num_LessonMorn * 6 ;
             connection.Open();
         }
         public void Close()
@@ -219,8 +219,11 @@ namespace BDFunction
                 command.Parameters["@p_Result"].Value = 2 ;
                 command.Parameters["@p_Result"].Direction = System.Data.ParameterDirection.Output;
                 command.ExecuteNonQuery();
-                if( 1 == (int)command.Parameters["@p_Result"].Value)
+                if (1 == (int)command.Parameters["@p_Result"].Value)
+                {
                     ++i;
+                    Console.WriteLine(((double)i) / Num_Schedule);
+                }
                     ++count;
             }
             Console.WriteLine(" " + count + " " + i);
