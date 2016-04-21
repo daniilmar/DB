@@ -66,3 +66,24 @@ from Schedule  sch
 inner join Lesson l on (l.LessonType = sch.LessonType and l.Number = sch.LessonNumber)
 inner join Course c on (c.CourseID = sch.CourseID)
 go
+
+-- V_Schedule -------------------------------------------
+if object_id('V_ScheduleForFree', 'V') is not null
+  drop view V_ScheduleForFree;
+go
+
+create view V_ScheduleForFree
+as
+select 
+	   sch.LessonType   as  LessonType,
+	   sch.LessonNumber as LessonNumber,
+	   sch.Classroom    as Classroom,
+	   sch.CourseID		as CourseID,
+	   c.Name   		as Course,
+	   sch.DayWeek		as DayWeek,
+	   l.StartTime		as StartTime,
+	   l.EndTime		as EndTime
+from Schedule  sch
+inner join Lesson l on (l.LessonType = sch.LessonType and l.Number = sch.LessonNumber)
+inner join Course c on (c.CourseID = sch.CourseID)
+go

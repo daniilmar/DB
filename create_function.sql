@@ -24,7 +24,7 @@ BEGIN
    FROM Classroom cr
    WHERE cr.Number not in
    ( SELECT Classroom
-	 FROM V_Schedule sch 
+	 FROM V_ScheduleForFree sch 
 	 WHERE ((@v_StartTime BETWEEN sch.StartTime and sch.EndTime) or
 			(@v_EndTime BETWEEN sch.StartTime and sch.EndTime)) and
 			DayWeek = @p_DayWeek
