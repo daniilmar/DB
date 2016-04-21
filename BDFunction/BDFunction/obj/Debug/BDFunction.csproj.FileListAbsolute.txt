@@ -1,0 +1,6 @@
+c:\users\rust\documents\visual studio 2013\Projects\BDFunction\BDFunction\bin\Debug\BDFunction.exe.config
+c:\users\rust\documents\visual studio 2013\Projects\BDFunction\BDFunction\bin\Debug\BDFunction.exe
+c:\users\rust\documents\visual studio 2013\Projects\BDFunction\BDFunction\bin\Debug\BDFunction.pdb
+c:\users\rust\documents\visual studio 2013\Projects\BDFunction\BDFunction\obj\Debug\BDFunction.csprojResolveAssemblyReference.cache
+c:\users\rust\documents\visual studio 2013\Projects\BDFunction\BDFunction\obj\Debug\BDFunction.exe
+c:\users\rust\documents\visual studio 2013\Projects\BDFunction\BDFunction\obj\Debug\BDFunction.pdb
