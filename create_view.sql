@@ -41,12 +41,25 @@ go
 
 create view V_Schedule
 as
-select sch.LessonType	as LessonType,
+select 
+	   CASE sch.LessonType
+         WHEN 1 THEN 'дневная ФО'
+         WHEN 2 THEN 'вечерняя ФО'
+         WHEN 3 THEN 'факультатив'
+		END				as  LessonType,
 	   sch.LessonNumber as LessonNumber,
 	   sch.Classroom    as Classroom,
 	   sch.CourseID		as CourseID,
 	   c.Name   		as Course,
-	   sch.DayWeek		as DayWeek,
+	   CASE sch.DayWeek
+         WHEN 1 THEN 'понедельник'
+         WHEN 2 THEN 'вторник'
+         WHEN 3 THEN 'среда'
+         WHEN 4 THEN 'четверг'
+         WHEN 5 THEN 'пятница'
+         WHEN 6 THEN 'суббота'
+         WHEN 7 THEN 'воскресенье'
+		END				as DayWeek,
 	   l.StartTime		as StartTime,
 	   l.EndTime		as EndTime
 from Schedule  sch
