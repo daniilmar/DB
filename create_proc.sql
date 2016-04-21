@@ -4,6 +4,7 @@ if object_id('P_CourseCreate', 'P') is not null
 go
 
 create procedure P_CourseCreate(
+ @p_ID	 int,
  @p_Name varchar(max)
 )
 as set nocount, xact_abort on set concat_null_yields_null off
@@ -13,8 +14,8 @@ begin try
 
   begin try
 
-    insert into Course(Name)
-    values (@p_Name);
+    insert into Course(CourseID, Name)
+    values (@p_ID, @p_Name);
     commit;
 
   end try
@@ -34,7 +35,9 @@ if object_id('P_ClassroomCreate', 'P') is not null
   drop procedure P_ClassroomCreate;
 go
 
-create procedure P_ClassroomCreate
+create procedure P_ClassroomCreate(
+@p_Number int
+)
 as set nocount, xact_abort on set concat_null_yields_null off
 begin try
 
@@ -42,7 +45,7 @@ begin try
 
   begin try
 
-    insert  Classroom default values;
+    insert  into Classroom  values(@p_Number);
     commit;
 
   end try
@@ -159,6 +162,11 @@ begin try
 		return;
 	end
 
+	if not exists (select 1 from F_GetFreeClassroom(@p_DayWeek, @p_LessonType, @p_LessonNumber)  where @p_Classroom = Number )
+	begin
+		RAISERROR('Аудитория не свободна',10,2);
+		return;
+	end
   begin transaction;
 
   begin try
@@ -170,12 +178,12 @@ begin try
   end try
   begin catch
     rollback;
-	RAISERROR('Schedule не добавлен',10, 1);
+	RAISERROR('Schedule не добавлен 1',10, 1);
   end catch;
 
 end try
 begin catch  
-	RAISERROR('Schedule не добавлен',10, 1);
+	RAISERROR('Schedule не добавлен 2',10, 1);
 end catch
 go
 

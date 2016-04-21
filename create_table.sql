@@ -1,35 +1,47 @@
 --Classroom -----------------------------------------
 IF OBJECT_ID('Classroom', 'U') IS NOT NULL
+begin
   IF OBJECT_ID('Schedule', 'U') IS NOT NULL
-  DROP TABLE Schedule;
+  begin
+	DROP TABLE Schedule;
+  end
   DROP TABLE Classroom;
+end
 GO
 
 CREATE TABLE Classroom
 (
-Number int IDENTITY(1,1),
+Number int,
 PRIMARY KEY (Number)
 )
 
 --Course -----------------------------------------
 IF OBJECT_ID('Course', 'U') IS NOT NULL
+begin
   IF OBJECT_ID('Schedule', 'U') IS NOT NULL
-  DROP TABLE Schedule;
+  begin
+	DROP TABLE Schedule;
+  end
   DROP TABLE Course;
+end
 GO
 
 CREATE TABLE Course
 (
-CourseID int IDENTITY(1,1),
+CourseID int,
 Name	 varchar(256) NOT NULL,
 PRIMARY KEY (CourseID)
 )
 
 --Lesson -----------------------------------------
 IF OBJECT_ID('Lesson', 'U') IS NOT NULL
+begin
   IF OBJECT_ID('Schedule', 'U') IS NOT NULL
-  DROP TABLE Schedule;
+  begin
+	DROP TABLE Schedule;
+  end
   DROP TABLE Lesson;
+end
 GO
 
 CREATE TABLE Lesson
@@ -45,7 +57,9 @@ PRIMARY KEY (Number, LessonType)
 
 --Schedule -----------------------------------------
 IF OBJECT_ID('Schedule', 'U') IS NOT NULL
+begin
   DROP TABLE Schedule;
+end
 GO
 
 CREATE TABLE Schedule
