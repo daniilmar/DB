@@ -131,11 +131,12 @@ create procedure P_ScheduleCreate(
  @p_LessonNumber	int,
  @p_Classroom		int,
  @p_CourseID		int,
- @p_DayWeek			int
+ @p_DayWeek			int,
+ @p_Result			int out
 )
 as set nocount, xact_abort on set concat_null_yields_null off
 begin try
-
+	set @p_Result = 0;
 	if @p_LessonType is null
 	begin
 		RAISERROR('Не указан тип пары',10,2);
@@ -173,6 +174,8 @@ begin try
 
     insert  Schedule(DayWeek, LessonNumber, LessonType, Classroom, CourseID)
 	values (@p_DayWeek, @p_LessonNumber, @p_LessonType, @p_Classroom, @p_CourseID);
+	
+	set @p_Result = 1;
 	commit;
 	
   end try
